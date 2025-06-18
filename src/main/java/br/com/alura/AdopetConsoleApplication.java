@@ -3,6 +3,7 @@ package br.com.alura;
 import br.com.alura.service.AbrigoService;
 import br.com.alura.service.PetService;
 import br.com.alura.client.ClientHttpConfiguration;
+import com.google.gson.Gson;
 
 import java.util.Scanner;
 
@@ -10,7 +11,9 @@ public class AdopetConsoleApplication {
 
     public static void main(String[] args) {
 
-        ClientHttpConfiguration requisicaoService = new ClientHttpConfiguration();
+        Gson gson = new Gson();
+        ClientHttpConfiguration requisicaoService = new ClientHttpConfiguration(gson);
+
         PetService petService = new PetService(requisicaoService);
         AbrigoService abrigoService = new AbrigoService(requisicaoService);
 
