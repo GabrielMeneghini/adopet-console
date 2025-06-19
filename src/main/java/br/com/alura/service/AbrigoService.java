@@ -2,7 +2,7 @@ package br.com.alura.service;
 
 import br.com.alura.client.ClientHttpConfiguration;
 import br.com.alura.domain.Abrigo;
-import com.google.gson.*;
+import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
@@ -53,7 +53,15 @@ public class AbrigoService {
         Type listType = new TypeToken<List<Abrigo>>() {}.getType();
         List<Abrigo> abrigos = new Gson().fromJson(responseBody, listType);
 
-        System.out.println("Abrigos cadastrados: ");
+        if(!abrigos.isEmpty()) {
+            mostrarAbrigos(abrigos);
+        } else {
+            System.out.println("Não há abrigos cadastrados.");
+        }
+    }
+
+    public void mostrarAbrigos(List<Abrigo> abrigos) {
+        System.out.println("Abrigos cadastrados:");
         for(Abrigo abrigo: abrigos) {
             System.out.println(abrigo.getId() + " - " + abrigo.getNome());
         }

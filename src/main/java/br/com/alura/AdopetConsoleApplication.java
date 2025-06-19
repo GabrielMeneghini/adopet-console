@@ -12,10 +12,10 @@ public class AdopetConsoleApplication {
     public static void main(String[] args) {
 
         Gson gson = new Gson();
-        ClientHttpConfiguration requisicaoService = new ClientHttpConfiguration(gson);
+        ClientHttpConfiguration clientHttpConfiguration = new ClientHttpConfiguration(gson);
 
-        PetService petService = new PetService(requisicaoService);
-        AbrigoService abrigoService = new AbrigoService(requisicaoService);
+        PetService petService = new PetService(clientHttpConfiguration);
+        AbrigoService abrigoService = new AbrigoService(clientHttpConfiguration);
 
         System.out.println("##### BOAS VINDAS AO SISTEMA ADOPET CONSOLE #####");
         try {
