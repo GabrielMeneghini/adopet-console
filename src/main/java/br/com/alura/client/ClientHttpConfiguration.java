@@ -11,11 +11,6 @@ import java.net.http.HttpResponse;
 public class ClientHttpConfiguration {
 
     private HttpClient httpClient = HttpClient.newHttpClient();
-    private Gson gson;
-
-    public ClientHttpConfiguration(Gson gson) {
-        this.gson = gson;
-    }
 
     public HttpResponse<String> dispararRequisicaoGet(String uri) throws IOException, InterruptedException {
         HttpRequest httpRequest = HttpRequest.newBuilder()
@@ -30,7 +25,7 @@ public class ClientHttpConfiguration {
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(URI.create(uri))
                 .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(object)))
+                .POST(HttpRequest.BodyPublishers.ofString(new Gson().toJson(object)))
                 .build();
         HttpResponse<String> httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
         return httpResponse;
